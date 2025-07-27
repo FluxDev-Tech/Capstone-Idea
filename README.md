@@ -1,58 +1,64 @@
 # 🚀 Capstone-Idea — Top 10 Arduino Projects by FluxDev-Tech
 
-A curated collection of **Top 10 Arduino Capstone Projects** ideal for students, educators, and tech enthusiasts. Each project includes:
+A beautifully designed collection of **Top 10 Arduino Capstone Projects** — ideal for students, educators, and tech enthusiasts. Each project includes:
 
-- 📷 Image preview  
-- 🧠 Project description  
-- 🛠️ Hardware & tech stack  
-- 🧾 Sample Arduino code  
+- 📸 Visual Preview  
+- 🧠 Concept Description  
+- 🛠️ Hardware & Tech Stack  
+- 🧾 Sample Arduino Code  
 
-> _"Build smarter. Learn faster. Inspire others."_ – FluxDev-Tech
-
----
-
-## 🔎 About This Project
-
-This website presents **10 innovative Arduino-based projects** that are perfect for capstone or thesis work. Each project comes with a real image, live code snippet, and all necessary components listed.
-
-Made for easy use, easy deploy — no frameworks, no external CSS, just clean HTML, CSS, and JS.
+> _"Build smarter. Learn faster. Inspire others."_ — **FluxDev-Tech**
 
 ---
 
-## 🔟 Project List
+## 🔍 Overview
 
-| # | Title |
-|--|-------|
-| 1 | RFID-Based Attendance System |
-| 2 | Fingerprint Voting System |
-| 3 | Theft Detection with SMS Alert |
-| 4 | Wireless Notice Board |
-| 5 | Fire and Smoke Alarm System |
-| 6 | Smart Irrigation System |
-| 7 | Home Automation with Mobile App |
-| 8 | Alcohol Detection for Driver Safety |
-| 9 | Smart Trash Bin (Auto Lid) |
-| 10 | Fingerprint Door Lock System |
+**Capstone-Idea** is a clean, framework-free, single-page website showcasing 10 inspiring Arduino projects. From security to automation, each entry includes real images, source code, and the tools needed to recreate the project.
 
-Each project shows:
+Built using just **HTML, CSS, and JavaScript** — no libraries or frameworks.
+
+---
+
+## 🔟 Projects Included
+
+| #  | Project Title                          |
+|----|----------------------------------------|
+| 1  | RFID-Based Attendance System           |
+| 2  | Fingerprint Voting System              |
+| 3  | Theft Detection with SMS Alert         |
+| 4  | Wireless Notice Board                  |
+| 5  | Fire and Smoke Alarm System            |
+| 6  | Smart Irrigation System                |
+| 7  | Home Automation with Mobile App        |
+| 8  | Alcohol Detection for Driver Safety    |
+| 9  | Smart Trash Bin (Auto Lid)             |
+| 10 | Fingerprint Door Lock System           |
+
+Each project includes:
 - ✅ Real hardware components
 - ✅ Full working Arduino code
-- ✅ Tech stack used
+- ✅ Technology stack used
 
 ---
 
-## 🖼️ Preview Screenshot
+> Replace the image files in `assets/img/` with your actual project screenshots named `1.png` through `10.png`.
 
-![Preview](assets/img/1.png)
-![Preview](assets/img/2.png)
-![Preview](assets/img/3.png)
-![Preview](assets/img/4.png)
-![Preview](assets/img/5.png)
-![Preview](assets/img/6.png)
-![Preview](assets/img/7.png)
-![Preview](assets/img/8.png)
-![Preview](assets/img/9.png)
-![Preview](assets/img/10.png)
+![1](assets/img/1.png)
+![2](assets/img/2.png)
+![3](assets/img/3.png)
+![4](assets/img/4.png)
+![5](assets/img/5.png)
+![6](assets/img/6.png)
+![7](assets/img/7.png)
+![8](assets/img/8.png)
+![9](assets/img/9.png)
+![10](assets/img/10.png)
+
+---
+
+## 📁 Folder Structure
+
+
 
 
 > Replace with your actual screenshots or project thumbnails
