@@ -4,80 +4,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Top 10 Arduino Capstone Projects - FluxDev-Tech</title>
-  <meta name="description" content="Top 10 Arduino Capstone Projects with full details, tech stacks, and code.">
+  <meta name="description" content="Top 10 Arduino Capstone Projects with descriptions, tech stacks, and sample code.">
   <link rel="icon" href="favicon.ico" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <script defer src="projects.js"></script>
-  <style>
-    .fade-enter { opacity: 0; transform: scale(0.98); }
-    .fade-enter-active { transition: all 0.3s ease; opacity: 1; transform: scale(1); }
-    .fade-exit { opacity: 1; transform: scale(1); }
-    .fade-exit-active { transition: all 0.3s ease; opacity: 0; transform: scale(0.98); }
-  </style>
 </head>
 <body class="bg-gray-900 text-white font-sans">
-
+  <!-- HEADER -->
   <header class="py-10 text-center">
-    <h1 class="text-4xl sm:text-5xl font-extrabold text-cyan-400 mb-3 drop-shadow-md">
+    <h1 class="text-4xl sm:text-5xl font-extrabold text-cyan-400 mb-2 drop-shadow-md">
       Top 10 Arduino Capstone Projects
     </h1>
-    <p class="text-lg text-gray-400">Click a project to view full details</p>
+    <p class="text-lg text-gray-400">Click a project to see full details, tech stack, and sample code</p>
   </header>
 
-  <!-- Grid View -->
-  <main id="project-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-6 max-w-7xl mx-auto pb-20">
-    <!-- Project cards injected here -->
+  <!-- PROJECT GRID -->
+  <main id="project-grid" class="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 px-6 pb-20 max-w-7xl mx-auto">
+    <!-- JS Injected Projects Here -->
   </main>
 
-  <!-- Project Detail View -->
-  <section id="project-detail" class="hidden max-w-4xl mx-auto px-6 pb-20">
-    <button onclick="goBack()" class="text-cyan-400 mb-6 hover:underline">&larr; Back to all projects</button>
-    <div class="bg-gray-800 rounded-xl shadow-xl p-8">
-      <img id="detail-image" src="" class="rounded-lg mb-6 w-full max-h-96 object-cover" alt="">
-      <h2 id="detail-title" class="text-3xl font-bold text-cyan-300 mb-3"></h2>
-      <p id="detail-description" class="text-gray-300 mb-4"></p>
-
-      <h3 class="text-white font-semibold mt-6 mb-2">Tech Stack:</h3>
-      <ul id="detail-stack" class="list-disc list-inside text-gray-300"></ul>
-
-      <h3 class="text-white font-semibold mt-6 mb-2">Sample Code:</h3>
-      <pre id="detail-code" class="bg-gray-700 text-green-200 text-sm p-4 rounded-lg overflow-x-auto whitespace-pre-wrap"></pre>
-    </div>
-  </section>
-
+  <!-- FOOTER -->
   <footer class="text-center text-gray-500 py-6 border-t border-gray-700 mt-10">
     &copy; 2025 FluxDev-Tech. All rights reserved.
   </footer>
 
-  <script>
-    function showProjectDetail(index) {
-      const p = projects[index];
-
-      // Fill detail section
-      document.getElementById("detail-image").src = p.image;
-      document.getElementById("detail-image").alt = p.title;
-      document.getElementById("detail-title").innerText = p.title;
-      document.getElementById("detail-description").innerText = p.description;
-
-      // Populate stack
-      const stackList = document.getElementById("detail-stack");
-      stackList.innerHTML = p.stack.map(tool => `<li>${tool}</li>`).join("");
-
-      // Sanitize and display code
-      document.getElementById("detail-code").innerHTML = p.code
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;");
-
-      // Toggle views
-      document.getElementById("project-grid").classList.add("hidden");
-      document.getElementById("project-detail").classList.remove("hidden");
-    }
-
-    function goBack() {
-      document.getElementById("project-detail").classList.add("hidden");
-      document.getElementById("project-grid").classList.remove("hidden");
-    }
-  </script>
-
+  <!-- SCRIPT LOADING -->
+  <script src="projects.js"></script>
 </body>
 </html>
