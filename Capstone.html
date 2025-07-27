@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Top 10 Arduino Capstone Projects</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      function toggleModal(id) {
+        document.getElementById(id).classList.toggle("hidden");
+        document.getElementById(id).classList.toggle("flex");
+      }
+    </script>
+  </head>
+  <body class="bg-gray-900 text-white font-sans">
+    <header class="text-center py-10">
+      <h1 class="text-5xl font-extrabold text-cyan-400 mb-4">Top 10 Arduino Capstone Projects</h1>
+      <p class="text-lg text-gray-400">Click an image to view description, how it works, tech stack, and code sample</p>
+    </header>
+
+    <main class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6 pb-20 max-w-7xl mx-auto">
+      <!-- Project Cards -->
+      <!-- Each card follows the same format -->
+
+      <!-- PROJECT TEMPLATE -->
+      <!-- Will be replaced dynamically below -->
+
+      <!-- INJECTED PROJECTS -->
+      
+      <!-- JS for dynamic injection -->
+      <script>
+        const projects = [
+          {
+            id: 1,
+            title: "Smart Trash Bin (Auto Lid)",
+            description: "Uses ultrasonic sensor to detect proximity and trigger a servo motor to open the lid.",
+            stack: ["Ultrasonic Sensor", "Servo Motor", "Arduino Uno", "Arduino IDE / C++"],
+            image: "/mnt/data/IMG_20250727_200516.png",
+            code: `#include <Servo.h>
+Servo servo;
+int trigPin = 9;
+int echoPin = 10;
+long duration;
+int distance;
+
+void setup() {
+  servo.attach(3);
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  duration = pulseIn(echoPin, HIGH);
+  distance = duration * 0.034 / 2;
+
+  if (distance < 10) {
+    servo.write(90);
+    delay(2000);
+    servo.write(0);
+  }
+  delay(500);
+}`
+          },
+          {
+            id: 2,
+            title: "Alcohol Detection System",
+            description: "Detects alcohol from breath using MQ3 sensor. Prevents ignition via relay if alcohol is detected.",
+            stack: ["MQ3 Sensor", "Relay Module", "Arduino Uno", "Arduino IDE / C++"],
+            image: "/mnt/data/IMG_20250727_200540.png",
+            code: `int sensorPin = A0;
+int relayPin = 8;
+void setup() {
+  pinMode(sensorPin, INPUT);
+  pinMode(relayPin, OUTPUT);
+}
+void loop() {
+  int value = analogRead(sensorPin);
+  if (value > 400) {
+    digitalWrite(relayPin, LOW);
+  } else {
+    digitalWrite(relayPin, HIGH);
+  }
+}`
+          },
+          {
+            id: 3,
+            title: "Automatic Plant Watering",
+            description: "Moisture sensor detects dry soil, triggers water pump.",
+            stack: ["Soil Moisture Sensor", "Relay", "Water Pump", "Arduino Uno"],
+            image: "/mnt/data/IMG_20250727_200605.png",
+            code: `int soil = A0;
+int pump = 7;
+void setup() {
+  pinMode(pump, OUTPUT);
+}
+void loop() {
+  int val = analogRead(soil);
+  if (val < 300) {
+    digitalWrite(pump, HIGH);
+    delay(5000);
+    digitalWrite(pump, LOW);
+  }
+  delay(1000);
+}`
+          },
+          {
+            id: 4,
+            title: "Smart Door Lock",
+            description: "Opens with correct password entered via keypad.",
+            stack: ["Keypad", "Servo Motor", "Arduino Uno"],
+            image: "/mnt/data/IMG_20250727_200627.png",
+            code: `// Uses Keypad and Servo libraries
+#include <Keypad.h>
+#include <Servo.h>
+//... configuration ...` // Truncated for brevity
+          },
+          {
+            id: 5,
+            title: "Home Automation via Bluetooth",
+            description: "Controls lights/fans using mobile app via HC-05 module.",
+            stack: ["HC-05 Module", "Relay Module", "Arduino Uno"],
+            image: "/mnt/data/IMG_20250727_200647.png",
+            code: `char data;
+void setup() {
+  Serial.begin(9600);
+  pinMode(8, OUTPUT);
+}
+void loop() {
+  if (Serial.available()) {
+    data = Serial.read();
+    if (data == '1') digitalWrite(8, HIGH);
+    else if (data == '0') digitalWrite(8, LOW);
+  }
+}`
+          },
+          {
+            id: 6,
+            title: "Smart Parking System",
+            description: "Detects empty parking spots using IR sensors.",
+            stack: ["IR Sensors", "LED Display", "Arduino Uno"],
+            image: "/mnt/data/IMG_20250727_200708.png",
+            code: `// IR sensor based parking monitor` // Brief
+          },
+          {
+            id: 7,
+            title: "RFID Attendance System",
+            description: "Logs student attendance with RFID tags.",
+            stack: ["RFID Module", "LCD Display", "Arduino Uno"],
+            image: "/mnt/data/IMG_20250727_200726.png",
+            code: `// RFID-based ID detection code sample`
+          },
+          {
+            id: 8,
+            title: "Fire Detection & Alert",
+            description: "Alerts via buzzer and message when fire detected.",
+            stack: ["Flame Sensor", "Buzzer", "GSM Module", "Arduino Uno"],
+            image: "/mnt/data/IMG_20250727_200748.png",
+            code: `// Flame sensor triggers buzzer/GSM alert`
+          },
+          {
+            id: 9,
+            title: "Weather Monitoring System",
+            description: "Monitors temperature/humidity using DHT sensor.",
+            stack: ["DHT11", "LCD", "Arduino Uno"],
+            image: "/mnt/data/IMG_20250727_200810.png",
+            code: `// DHT read and display`
+          },
+          {
+            id: 10,
+            title: "Voice Controlled Home",
+            description: "Uses voice commands via Android app to control home.",
+            stack: ["Bluetooth", "Relay", "Arduino Uno"],
+            image: "/mnt/data/IMG_20250727_200855.png",
+            code: `// Voice signal via Bluetooth and relay`
+          },
+        ];
+
+        projects.forEach(project => {
+          document.write(`
+            <div class="bg-gray-800 rounded-xl shadow-xl overflow-hidden hover:shadow-cyan-400/40 transition duration-300">
+              <img src="${project.image}" alt="${project.title}" class="w-full h-56 object-cover cursor-pointer" onclick="toggleModal('modal${project.id}')">
+              <div class="p-5">
+                <h2 class="text-xl font-bold text-cyan-300">${project.title}</h2>
+                <p class="text-sm text-gray-400 mt-1">${project.description}</p>
+              </div>
+            </div>
+            <div id="modal${project.id}" class="hidden fixed inset-0 bg-black bg-opacity-70 justify-center items-center z-50">
+              <div class="bg-gray-800 p-8 rounded-2xl w-full max-w-2xl relative">
+                <button class="absolute top-4 right-4 text-white text-xl" onclick="toggleModal('modal${project.id}')">&times;</button>
+                <img src="${project.image}" alt="${project.title}" class="rounded-xl mb-4">
+                <h3 class="text-2xl font-bold text-cyan-400">${project.title}</h3>
+                <p class="mt-2 text-gray-300">${project.description}</p>
+                <h4 class="mt-4 font-semibold text-white">Tech Stack:</h4>
+                <ul class="list-disc list-inside text-gray-300">
+                  ${project.stack.map(tool => `<li>${tool}</li>`).join('')}
+                </ul>
+                <h4 class="mt-4 font-semibold text-white">Sample Code:</h4>
+                <pre class="bg-gray-700 p-4 rounded-lg text-sm text-green-200 overflow-x-auto">${project.code}</pre>
+              </div>
+            </div>
+          `);
+        });
+      </script>
+
+    </main>
+
+    <footer class="text-center text-gray-400 py-6 border-t border-gray-700">
+      &copy; 2025 Arduino Project Showcase. All rights reserved.
+    </footer>
+  </body>
+</html>
