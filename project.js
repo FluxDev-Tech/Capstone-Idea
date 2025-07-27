@@ -99,7 +99,7 @@ void loop() {
 void sendSMS() {
   sim800.println("AT+CMGF=1");
   delay(1000);
-  sim800.println("AT+CMGS=\\"+1234567890\\"");
+  sim800.println("AT+CMGS=\"+1234567890\"");
   delay(1000);
   sim800.println("Theft detected!");
   sim800.write(26);
