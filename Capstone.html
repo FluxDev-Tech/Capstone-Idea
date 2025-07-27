@@ -195,18 +195,115 @@ void loop() {
                 <button class="absolute top-4 right-4 text-white text-xl" onclick="toggleModal('modal${project.id}')">&times;</button>
                 <img src="${project.image}" alt="${project.title}" class="rounded-xl mb-4">
                 <h3 class="text-2xl font-bold text-cyan-400">${project.title}</h3>
-                <p class="mt-2 text-gray-300">${project.description}</p>
-                <h4 class="mt-4 font-semibold text-white">Tech Stack:</h4>
-                <ul class="list-disc list-inside text-gray-300">
-                  ${project.stack.map(tool => `<li>${tool}</li>`).join('')}
-                </ul>
-                <h4 class="mt-4 font-semibold text-white">Sample Code:</h4>
-                <pre class="bg-gray-700 p-4 rounded-lg text-sm text-green-200 overflow-x-auto">${project.code}</pre>
-              </div>
-            </div>
-          `);
-        });
-      </script>
+<script>
+const projects = [
+  {
+    id: 1,
+    title: "Smart Trash Bin (Auto Lid)",
+    description: "Uses an ultrasonic sensor to detect nearby motion and a servo motor to open the lid automatically.",
+    stack: ["Ultrasonic Sensor", "Servo Motor", "Arduino Uno"],
+    image: "assets/img/1.png",
+    code: `#include <Servo.h>\nServo lid;\nvoid setup() {\n lid.attach(9);\n}\nvoid loop() {\n lid.write(90);\n delay(2000);\n lid.write(0);\n delay(2000);\n}`
+  },
+  {
+    id: 2,
+    title: "Alcohol Detection System",
+    description: "Uses MQ3 gas sensor to detect alcohol on a person’s breath, then blocks ignition via relay.",
+    stack: ["MQ3 Sensor", "Relay Module", "Arduino Uno"],
+    image: "assets/img/2.png",
+    code: `int mq3 = A0;\nint relay = 8;\nvoid setup() {\n pinMode(relay, OUTPUT);\n}\nvoid loop() {\n int level = analogRead(mq3);\n digitalWrite(relay, level > 400 ? LOW : HIGH);\n}`
+  },
+  {
+    id: 3,
+    title: "Automatic Plant Watering",
+    description: "Waters plants automatically when the soil moisture level falls below a threshold.",
+    stack: ["Moisture Sensor", "Relay", "Water Pump"],
+    image: "assets/img/3.png",
+    code: `int sensor = A0;\nint pump = 7;\nvoid loop() {\n if (analogRead(sensor) < 300) {\n digitalWrite(pump, HIGH);\n delay(5000);\n digitalWrite(pump, LOW);\n }\n delay(1000);\n}`
+  },
+  {
+    id: 4,
+    title: "Smart Door Lock",
+    description: "Uses a keypad for password entry and a servo motor to unlock the door.",
+    stack: ["Keypad", "Servo", "Arduino Uno"],
+    image: "assets/img/4.png",
+    code: `#include <Keypad.h>\n#include <Servo.h>\nServo lock;\nvoid setup() {\n lock.attach(9);\n lock.write(0);\n}`
+  },
+  {
+    id: 5,
+    title: "Home Automation via Bluetooth",
+    description: "Bluetooth-based control of appliances like lights or fans using an Android phone.",
+    stack: ["HC-05", "Relay Module", "Arduino Uno"],
+    image: "assets/img/5.png",
+    code: `char c;\nvoid loop() {\n if (Serial.available()) {\n c = Serial.read();\n digitalWrite(8, c == '1');\n }\n}`
+  },
+  {
+    id: 6,
+    title: "Smart Parking System",
+    description: "Detects available parking slots using IR sensors and displays the count.",
+    stack: ["IR Sensor", "LED Display", "Arduino Uno"],
+    image: "assets/img/6.png",
+    code: `int ir = 2;\nvoid loop() {\n int status = digitalRead(ir);\n if (status == LOW) { /* slot occupied */ } else { /* slot free */ }\n}`
+  },
+  {
+    id: 7,
+    title: "RFID Attendance System",
+    description: "Students tap their RFID cards to log attendance on an LCD display.",
+    stack: ["RFID Reader", "LCD Display", "Arduino Uno"],
+    image: "assets/img/7.png",
+    code: `#include <SPI.h>\n#include <MFRC522.h>\nMFRC522 rfid(10, 9);\nvoid loop() {\n if (rfid.PICC_IsNewCardPresent()) { Serial.println("Student ID detected"); }\n}`
+  },
+  {
+    id: 8,
+    title: "Fire Detection & Alert",
+    description: "Flame or gas sensor detects fire and alerts via buzzer and message.",
+    stack: ["Flame Sensor", "Buzzer", "GSM Module"],
+    image: "assets/img/8.png",
+    code: `int flame = A0;\nvoid loop() {\n if (analogRead(flame) > 600) {\n tone(8, 1000);\n }\n}`
+  },
+  {
+    id: 9,
+    title: "Weather Monitoring System",
+    description: "Measures temperature and humidity using a DHT sensor and shows it on an LCD.",
+    stack: ["DHT11", "LCD", "Arduino Uno"],
+    image: "assets/img/9.png",
+    code: `#include <DHT.h>\nDHT dht(2, DHT11);\nvoid loop() {\n float t = dht.readTemperature();\n float h = dht.readHumidity();\n}`
+  },
+  {
+    id: 10,
+    title: "Voice Controlled Home",
+    description: "Uses Android voice commands to control appliances wirelessly via Bluetooth.",
+    stack: ["Bluetooth", "Relay", "Arduino Uno"],
+    image: "assets/img/10.png",
+    code: `char command;\nvoid loop() {\n if (Serial.available()) {\n command = Serial.read();\n digitalWrite(7, command == '1');\n }\n}`
+  ];
+  projects.forEach(project => {
+    document.write(`
+      <div class="bg-gray-800 rounded-xl shadow-xl overflow-hidden hover:shadow-cyan-400/40 transition duration-300">
+        <img src="\${project.image}" alt="\${project.title}" class="w-full h-56 object-cover cursor-pointer" onclick="toggleModal('modal\${project.id}')">
+        <div class="p-5">
+          <h2 class="text-xl font-bold text-cyan-300">\${project.title}</h2>
+          <p class="text-sm text-gray-400 mt-1">\${project.description}</p>
+        </div>
+      </div>
+      <div id="modal\${project.id}" class="hidden fixed inset-0 bg-black bg-opacity-70 justify-center items-center z-50">
+        <div class="bg-gray-800 p-8 rounded-2xl w-full max-w-2xl relative">
+          <button class="absolute top-4 right-4 text-white text-xl" onclick="toggleModal('modal\${project.id}')">&times;</button>
+          <img src="\${project.image}" alt="\${project.title}" class="rounded-xl mb-4">
+          <h3 class="text-2xl font-bold text-cyan-400">\${project.title}</h3>
+          <p class="mt-2 text-gray-300">\${project.description}</p>
+          <h4 class="mt-4 font-semibold text-white">Tech Stack:</h4>
+          <ul class="list-disc list-inside text-gray-300">
+            \${project.stack.map(tool => `<li>\${tool}</li>`).join('')}
+          </ul>
+          <h4 class="mt-4 font-semibold text-white">Sample Code:</h4>
+          <pre class="bg-gray-700 p-4 rounded-lg text-sm text-green-200 overflow-x-auto">\${project.code}</pre>
+        </div>
+      </div>
+    `);
+  });
+</script>
+      
 
     </main>
 
