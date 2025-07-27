@@ -5,25 +5,33 @@
   padding: 0;
 }
 
+:root {
+  --primary-bg: #0a0f2c;
+  --card-bg: #11173d;
+  --glow-color: #00ffff;
+  --text-color: #f0f4ff;
+  --accent-color: #00bcd4;
+}
+
 body {
   font-family: "Segoe UI", sans-serif;
-  background-color: #f4f6f9;
-  color: #333;
+  background-color: var(--primary-bg);
+  color: var(--text-color);
   line-height: 1.6;
 }
 
 /* Header */
 header {
   background: #0d1117;
-  color: #fff;
+  color: var(--text-color);
   text-align: center;
   padding: 2rem 1rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  box-shadow: 0 0 10px #00ffff33;
 }
 
 header h1 {
   font-size: 2.5rem;
-  color: #00bcd4;
+  color: var(--accent-color);
 }
 
 header p {
@@ -43,17 +51,17 @@ header p {
 
 /* Cards */
 .card {
-  background: #ffffff;
+  background: var(--card-bg);
   border-radius: 12px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 0 15px var(--glow-color);
 }
 
 .card:hover {
   transform: scale(1.03);
-  box-shadow: 0 6px 20px rgba(0, 188, 212, 0.3);
+  box-shadow: 0 0 25px var(--glow-color);
 }
 
 .card img {
@@ -70,12 +78,12 @@ header p {
   font-size: 1.1rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
-  color: #00bcd4;
+  color: var(--accent-color);
 }
 
 .card-desc {
   font-size: 0.95rem;
-  color: #555;
+  color: #bbb;
 }
 
 /* Details Section */
@@ -84,32 +92,38 @@ header p {
   padding: 2rem;
   max-width: 900px;
   margin: 0 auto;
+  background: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 0 12px var(--accent-color);
 }
 
 .details.active {
   display: block;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
 }
 
 .details h2 {
-  color: #00bcd4;
+  color: var(--accent-color);
   margin-bottom: 1rem;
 }
 
 .back-btn {
   display: inline-block;
   margin-bottom: 1rem;
-  background: #00bcd4;
+  background: var(--accent-color);
   color: #fff;
   padding: 0.6rem 1.2rem;
   border-radius: 6px;
   font-weight: bold;
   text-decoration: none;
   cursor: pointer;
+  box-shadow: 0 0 10px var(--accent-color);
 }
 
+.back-btn:hover {
+  background-color: #02acc9;
+}
+
+/* Section Lists */
 .section {
   margin: 1.5rem 0;
 }
@@ -119,6 +133,7 @@ header p {
   list-style-type: disc;
 }
 
+/* Code Blocks */
 pre {
   background: #212121;
   color: #8aff80;
@@ -126,6 +141,7 @@ pre {
   overflow-x: auto;
   border-radius: 6px;
   white-space: pre-wrap;
+  box-shadow: 0 0 10px #00ff8855;
 }
 
 /* Footer */
@@ -136,4 +152,5 @@ footer {
   font-size: 0.9rem;
   background: #0d1117;
   margin-top: 2rem;
+  box-shadow: 0 -2px 10px #00ffff33;
 }
