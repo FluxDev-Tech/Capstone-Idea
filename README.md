@@ -44,6 +44,16 @@ Each project shows:
 ## 🖼️ Preview Screenshot
 
 ![Preview](assets/img/1.png)
+![Preview](assets/img/2.png)
+![Preview](assets/img/3.png)
+![Preview](assets/img/4.png)
+![Preview](assets/img/5.png)
+![Preview](assets/img/6.png)
+![Preview](assets/img/7.png)
+![Preview](assets/img/8.png)
+![Preview](assets/img/9.png)
+![Preview](assets/img/10.png)
+
 
 > Replace with your actual screenshots or project thumbnails
 
