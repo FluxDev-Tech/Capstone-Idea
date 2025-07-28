@@ -47,7 +47,7 @@ body {
   background: url('assets/img/IMG_20250727_200516.png') center/cover no-repeat fixed;
   z-index: -1;
   opacity: 0.3;
-  filter: brightness(0.6) blur(2px);
+  filter: brightness(0.5) blur(0px);
 }
 
 .about .container {
