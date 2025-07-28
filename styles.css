@@ -27,7 +27,7 @@ body {
 
 /* Hero Section */
 .hero {
-  background: url('images/hero-bg.jpg') center/cover no-repeat;
+  background: url('assets/img/IMG_20250727_200516.png') center/cover no-repeat;
   height: 60vh;
   display: flex;
   align-items: center;
