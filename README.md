@@ -39,22 +39,6 @@ Each card includes full details and expandable content.
 
 ---
 
-## 📸 Image Previews
-
-
-![1](assets/img/1.png)
-![2](assets/img/2.png)
-![3](assets/img/3.png)
-![4](assets/img/4.png)
-![5](assets/img/5.png)
-![6](assets/img/6.png)
-![7](assets/img/7.png)
-![8](assets/img/8.png)
-![9](assets/img/9.png)
-![10](assets/img/10.png)
-
-
----
 
 ## 📁 Project Structure
 
@@ -101,13 +85,22 @@ Layout adapts to all screen sizes using pure CSS media queries.
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/FluxDev-Tech/Capstone-Idea.git
+https://github.com/FluxDev-Tech/Capstone-Idea.git
 cd Capstone-Idea
 ```
 
-### 2. Add Your Screenshots
+### 2. Screenshots
 
-Replace files in `assets/img/1.png` to `10.png` with your actual project thumbnails.
+![1](assets/img/1.png)
+![2](assets/img/2.png)
+![3](assets/img/3.png)
+![4](assets/img/4.png)
+![5](assets/img/5.png)
+![6](assets/img/6.png)
+![7](assets/img/7.png)
+![8](assets/img/8.png)
+![9](assets/img/9.png)
+![10](assets/img/10.png)
 
 ### 3. Run the Site
 
@@ -172,7 +165,7 @@ We welcome contributions!
 
 ```bash
 # Fork the project
-git clone https://github.com/yourname/Capstone-Idea.git
+git clone https://github.com/FluxDev-Tech/Capstone-Idea.git
 cd Capstone-Idea
 # Create a feature branch
 git checkout -b my-update
