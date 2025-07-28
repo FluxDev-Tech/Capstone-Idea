@@ -15,8 +15,9 @@ function renderGallery() {
 
 function showDetails(index) {
   const p = projects[index];
-  gallery.style.display = "none";
+  gallery.classList.add("hidden"); // hide horizontal scroll layout
   details.classList.add("active");
+
   details.innerHTML = `
     <div class="back-btn" onclick="goBack()">← Back to Projects</div>
     <h2>${p.title}</h2>
@@ -38,7 +39,7 @@ function showDetails(index) {
 
 function goBack() {
   details.classList.remove("active");
-  gallery.style.display = "grid";
+  gallery.classList.remove("hidden"); // restore horizontal gallery
 }
 
 renderGallery();
