@@ -8,8 +8,8 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
-  color: #f5f5f5;
+  background: linear-gradient(145deg, #0d0d0d, #1e1e1e);
+  color: #f2f2f2;
   line-height: 1.6;
   overflow-x: hidden;
 }
@@ -21,9 +21,10 @@ body {
 }
 
 h1, h2, h3 {
-  font-weight: 700;
+  font-weight: bold;
   margin-bottom: 1rem;
-  text-shadow: 0 0 10px rgba(0,255,255,0.3);
+  color: #00ffe1;
+  text-shadow: 0 0 5px rgba(0, 255, 225, 0.5);
 }
 
 p {
@@ -64,7 +65,6 @@ section {
 .hero h1 {
   font-size: 3rem;
   margin-bottom: 1rem;
-  color: #00ffe1;
 }
 
 .hero p {
@@ -72,7 +72,7 @@ section {
   color: #ccc;
 }
 
-/* About Flex */
+/* About Section */
 .about-flex {
   display: flex;
   flex-wrap: wrap;
@@ -90,7 +90,7 @@ section {
   flex: 1;
 }
 
-/* Skills */
+/* Skills Section */
 .skills-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -100,7 +100,7 @@ section {
 }
 
 .skills-list li {
-  background: #222;
+  background: #1c1c1c;
   padding: 1rem;
   text-align: center;
   border-radius: 10px;
@@ -112,13 +112,13 @@ section {
   transform: scale(1.05);
 }
 
-/* Gallery */
+/* Project Gallery with Horizontal Scroll */
 .gallery {
-  display: flex;
   overflow-x: auto;
-  gap: 1.5rem;
-  padding: 1rem 0;
+  display: flex;
+  gap: 2rem;
   scroll-snap-type: x mandatory;
+  padding: 2rem 1rem;
 }
 
 .gallery::-webkit-scrollbar {
@@ -131,20 +131,21 @@ section {
 }
 
 .gallery .card {
-  min-width: 300px;
-  background: #111;
+  min-width: 320px;
+  background: #121212;
+  border-radius: 16px;
   padding: 1.5rem;
-  border-radius: 20px;
   scroll-snap-align: center;
-  box-shadow: 0 0 15px rgba(0,255,255,0.2);
-  transition: transform 0.3s;
+  box-shadow: 0 0 20px rgba(0,255,255,0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .gallery .card:hover {
   transform: translateY(-10px);
+  box-shadow: 0 0 30px rgba(0,255,255,0.3);
 }
 
-/* Testimonials */
+/* Testimonials Section */
 .testimonial-cards {
   display: grid;
   gap: 2rem;
@@ -169,7 +170,7 @@ section {
 /* Connect Section */
 .connect-section h3 {
   text-align: center;
-  font-size: 1.8rem;
+  font-size: 2rem;
   margin-bottom: 1.5rem;
 }
 
@@ -181,7 +182,7 @@ section {
 }
 
 .social-badges img {
-  transition: transform 0.3s;
+  transition: transform 0.3s ease;
 }
 
 .social-badges a:hover img {
@@ -197,7 +198,7 @@ footer {
   font-size: 0.9rem;
 }
 
-/* Responsive */
+/* Responsive Styles */
 @media (max-width: 768px) {
   .about-flex {
     flex-direction: column;
@@ -208,7 +209,11 @@ footer {
   }
 
   .skills-list {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gallery .card {
+    min-width: 80%;
   }
 }
 
@@ -217,7 +222,11 @@ footer {
     grid-template-columns: 1fr;
   }
 
-  .gallery .card {
-    min-width: 80%;
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
   }
 }
