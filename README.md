@@ -41,12 +41,17 @@ Each card includes full details and expandable content.
 
 ## 📸 Image Previews
 
-> Replace the following images with actual screenshots in `/assets/img/` folder
-
 ```
-assets/img/1.png → Smart Plant Monitor  
-assets/img/2.png → RFID Attendance Logger  
-... and so on up to 10.png
+![1](assets/img/1.png)
+![2](assets/img/2.png)
+![3](assets/img/3.png)
+![4](assets/img/4.png)
+![5](assets/img/5.png)
+![6](assets/img/6.png)
+![7](assets/img/7.png)
+![8](assets/img/8.png)
+![9](assets/img/9.png)
+![10](assets/img/10.png)
 ```
 
 ---
