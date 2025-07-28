@@ -123,7 +123,7 @@ https://capstone-idea.vercel.app/
 ```
 or
 ```
-https://yourusername.github.io/Capstone-Idea/
+https://fluxdev-tech.github.io/Capstone-Idea/
 ```
 
 ---
