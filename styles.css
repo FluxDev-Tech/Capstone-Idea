@@ -27,35 +27,47 @@ body {
 
 /* Hero Section */
 .hero {
-  background: linear-gradient(
-      rgba(255, 255, 255, 0.15),
-      rgba(255, 255, 255, 0.15)
-    ),
-    url('assets/img/IMG_20250727_200516.png') center/cover no-repeat;
-  height: 60vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
+  height: 0;
+  display: none;
 }
-.hero-overlay {
+
+/* About Me Section with Fixed Background */
+.about {
   position: relative;
-  z-index: 2;
-  background: rgba(0, 0, 0, 0.4); /* reduce darkness a bit */
+  padding: 3rem 1rem;
+  color: #eee;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.about::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('assets/img/IMG_20250727_200516.png') center/cover no-repeat fixed;
+  z-index: -1;
+  opacity: 0.3;
+  filter: brightness(0.6) blur(2px);
+}
+
+.about .container {
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: rgba(13, 17, 23, 0.85);
   padding: 2rem;
-  text-align: center;
-  color: white;
-  backdrop-filter: blur(3px);
-  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 0 15px #00ffff33;
 }
-.hero h1 {
-  font-size: 3rem;
+
+.about h2 {
   color: var(--accent-color);
-  text-shadow: 0 0 12px #00bcd4;
+  font-size: 2rem;
+  margin-bottom: 1rem;
 }
-.hero p {
-  font-size: 1.2rem;
-  margin-top: 0.5rem;
+
+.about p {
+  font-size: 1rem;
+  line-height: 1.8;
   color: #ccc;
 }
 
