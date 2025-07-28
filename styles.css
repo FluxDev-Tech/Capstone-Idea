@@ -141,6 +141,9 @@ header p {
 .gallery::-webkit-scrollbar {
   height: 8px;
 }
+.gallery.hidden {
+  display: none !important;
+}
 .gallery::-webkit-scrollbar-thumb {
   background: #00ffff55;
   border-radius: 4px;
