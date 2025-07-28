@@ -41,7 +41,7 @@ Each card includes full details and expandable content.
 
 ## 📸 Image Previews
 
-```
+
 ![1](assets/img/1.png)
 ![2](assets/img/2.png)
 ![3](assets/img/3.png)
@@ -52,7 +52,7 @@ Each card includes full details and expandable content.
 ![8](assets/img/8.png)
 ![9](assets/img/9.png)
 ![10](assets/img/10.png)
-```
+
 
 ---
 
