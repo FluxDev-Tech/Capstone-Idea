@@ -5,43 +5,60 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Top 10 Arduino Capstone Projects</title>
   <link rel="stylesheet" href="styles.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="icon" href="assets/img/favicon.ico" />
+  <meta property="og:title" content="Top 10 Arduino Capstone Projects">
+  <meta property="og:image" content="assets/img/share-preview.png">
+  <meta property="og:description" content="Explore free Arduino capstone projects with full code and guides.">
+  <meta name="theme-color" content="#0f172a">
 </head>
 <body>
 
-<!-- Hero Section: Background Only -->
-<section class="hero"></section>
+<!-- Theme Toggle -->
+<div class="theme-toggle">
+  <button id="toggleTheme">🌓</button>
+</div>
 
-<!-- Intro Section -->
-<section class="intro">
+<!-- Hero Section -->
+<section class="hero" data-aos="fade-in"></section>
+
+<!-- Intro -->
+<section class="intro" data-aos="fade-up">
   <div class="container">
     <h2>Turning Ideas Into Real-World Solutions</h2>
     <p>Explore the passion behind every Arduino capstone project. Learn more about the developer and the mission driving these innovations.</p>
   </div>
 </section>
 
-<!-- Featured Arduino Ideas Section -->
-<section class="about">
+<!-- About / Samples -->
+<section class="about" data-aos="fade-up">
   <div class="container about-flex">
     <div class="about-img">
       <img src="assets/img/profile.png" alt="Arduino Projects Showcase">
     </div>
     <div class="about-text">
       <h2>Free Arduino Capstone Samples</h2>
-      <p>Get inspired with a curated list of free Arduino-based capstone project ideas. Each sample highlights a unique real-world application, complete with descriptions, hardware components, and starter code. Whether you're a student, hobbyist, or educator, these ideas are designed to kickstart your next innovation.</p>
+      <p>Get inspired with a curated list of free Arduino-based capstone project ideas. Each sample highlights a unique real-world application, complete with descriptions, hardware components, and starter code.</p>
     </div>
   </div>
 </section>
 
+<!-- Developer Info -->
+<section class="developer" data-aos="fade-up">
+  <div class="container">
+    <img src="assets/img/dev.png" alt="Developer" class="dev-photo">
+    <h3>Hi! I'm John Martinez 👋</h3>
+    <p>I specialize in Arduino and web development. Let’s build something amazing together!</p>
+  </div>
+</section>
 
-<!-- Project Gallery -->
-<div id="gallery" class="gallery"></div>
+<!-- Projects -->
+<div id="gallery" class="gallery" data-aos="fade-up"></div>
+<div id="details" class="details" data-aos="fade-up"></div>
 
-<!-- Project Details -->
-<div id="details" class="details"></div>
-
-  <!-- Let's Connect Section -->
-<section class="connect-section">
-  <h3>📫 Open for commission</h3>
+<!-- Connect -->
+<section class="connect-section" data-aos="fade-up">
+  <h3>📫 Let's Connect</h3>
   <div class="social-badges">
     <a href="https://www.facebook.com/fluxdevtech" target="_blank">
       <img src="https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white" alt="Facebook" />
@@ -57,11 +74,19 @@
     </a>
   </div>
 </section>
-  
-  <!-- Footer -->
-  <footer>&copy; 2025 FluxDev-Tech. All rights reserved.</footer>
 
-  <script src="projects.js"></script>
-  <script src="script.js"></script>
+<!-- Footer -->
+<footer>&copy; 2025 FluxDev-Tech. All rights reserved.</footer>
+
+<!-- Scripts -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init();</script>
+<script>
+  document.getElementById('toggleTheme').addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+  });
+</script>
+<script src="projects.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
