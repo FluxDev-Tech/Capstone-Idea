@@ -315,18 +315,6 @@ p {
   line-height: 1.3;
 }
 
-/* Project Details Styling */
-.details .card {
-  margin-top: 2rem;
-  background-color: var(--card-color);
-  padding: 2rem;
-  border-radius: 14px;
-}
-
-.details h4 {
-  margin-top: 1rem;
-  font-size: 1rem;
-  color: var(--primary-color);
 /* =======================
    🖼️ PROJECT GALLERY
 ========================== */
