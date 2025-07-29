@@ -426,3 +426,65 @@ footer {
     font-size: 2rem;
   }
   }
+
+/* Style for the details card inside #details section */
+.details .card {
+  width: 100%;
+  max-width: 700px;
+  margin: 2rem auto;
+  background-color: var(--card-color);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  text-align: left;
+}
+
+.details h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
+
+.details h4 {
+  margin-top: 1.5rem;
+  color: var(--primary-color);
+}
+
+.details ul {
+  margin-left: 1.2rem;
+  padding-left: 1rem;
+  list-style-type: disc;
+  color: var(--text-color);
+}
+
+.details pre {
+  background-color: #111;
+  color: #00ff99;
+  padding: 1rem;
+  border-radius: 10px;
+  overflow-x: auto;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.close-btn {
+  margin-top: 1.5rem;
+  padding: 0.6rem 1.2rem;
+  background-color: var(--primary-color);
+  border: none;
+  color: #000;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.close-btn:hover {
+  background-color: #00ccbb;
+}
+
+/* Optional smooth transition */
+.details {
+  transition: all 0.3s ease;
+}
