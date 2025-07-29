@@ -60,6 +60,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .logo {
@@ -75,6 +76,7 @@ body {
   display: flex;
   gap: 1.5rem;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .nav-links a {
@@ -128,6 +130,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  padding: 2rem;
 }
 
 .hero::before {
@@ -139,18 +143,17 @@ body {
 
 .hero-content {
   position: relative;
-  text-align: center;
   z-index: 1;
 }
 
 .hero h1 {
-  font-size: 3rem;
+  font-size: clamp(2.5rem, 5vw, 4rem);
   color: var(--primary);
   text-shadow: 0 0 8px var(--shadow);
 }
 
 .hero p {
-  font-size: 1.25rem;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
   color: #ddd;
   margin-top: 1rem;
 }
@@ -158,9 +161,11 @@ body {
 /* === ABOUT === */
 .about-flex {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   gap: 2rem;
   align-items: center;
+  justify-content: center;
 }
 
 .about-img img {
@@ -238,6 +243,7 @@ body {
   border-radius: 10px;
   margin-bottom: 1rem;
   object-fit: cover;
+  height: 200px;
 }
 
 .project-card:hover {
@@ -361,5 +367,9 @@ footer {
 
   .project-details pre {
     font-size: 0.85rem;
+  }
+
+  .about-flex {
+    flex-direction: column;
   }
 }
