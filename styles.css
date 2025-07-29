@@ -1,4 +1,27 @@
-/* === RESET & BASE === */
+/* === ROOT THEME COLORS === */
+:root {
+  --primary: #00ffe1;
+  --bg-dark: #0f0f0f;
+  --bg-light: #f9f9f9;
+  --text-dark: #111;
+  --text-light: #f4f4f4;
+  --accent: #1d1d1d;
+}
+
+[data-theme="dark"] {
+  --bg: var(--bg-dark);
+  --text: var(--text-light);
+  --card: #1a1a1a;
+  --shadow: rgba(0, 255, 225, 0.2);
+}
+
+[data-theme="light"] {
+  --bg: var(--bg-light);
+  --text: var(--text-dark);
+  --card: #ffffff;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -7,14 +30,14 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
-  color: #f4f4f4;
-  line-height: 1.6;
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: all 0.3s ease;
   overflow-x: hidden;
+  line-height: 1.6;
 }
 
-/* === CONTAINER === */
 .container {
   width: 90%;
   max-width: 1200px;
@@ -22,25 +45,81 @@ body {
   padding: 2rem 1rem;
 }
 
-/* === TYPOGRAPHY === */
-h1, h2, h3 {
-  font-weight: bold;
-  margin-bottom: 1rem;
-  color: #00ffe1;
-  text-shadow: 0 0 8px rgba(0, 255, 225, 0.5);
-}
-
-p {
-  color: #ccc;
-  margin-bottom: 1rem;
-}
-
-section {
-  padding: 4rem 0;
+/* === NAVBAR === */
+.navbar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: var(--bg);
+  padding: 1rem 0;
+  z-index: 999;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* === HERO SECTION === */
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  color: var(--primary);
+}
+
+.logo span {
+  color: white;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  display: block;
+  width: 0%;
+  height: 2px;
+  background: var(--primary);
+  transition: 0.3s;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+#themeToggle {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text);
+}
+
+.hamburger {
+  font-size: 2rem;
+  display: none;
+  cursor: pointer;
+}
+
+/* === HERO === */
 .hero {
   height: 100vh;
   background: url('assets/img/hero-bg.jpg') center/cover no-repeat;
@@ -48,34 +127,34 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
 }
 
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .hero-content {
   position: relative;
+  text-align: center;
   z-index: 1;
-  max-width: 700px;
-  padding: 2rem;
 }
 
 .hero h1 {
   font-size: 3rem;
-  color: #00ffe1;
+  color: var(--primary);
+  text-shadow: 0 0 8px var(--shadow);
 }
 
 .hero p {
   font-size: 1.25rem;
   color: #ddd;
+  margin-top: 1rem;
 }
 
-/* === ABOUT FLEX === */
+/* === ABOUT === */
 .about-flex {
   display: flex;
   flex-wrap: wrap;
@@ -84,10 +163,10 @@ section {
 }
 
 .about-img img {
+  max-width: 500px;
   width: 100%;
   border-radius: 20px;
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-  max-width: 500px;
+  box-shadow: 0 0 15px var(--shadow);
 }
 
 .about-text {
@@ -104,27 +183,25 @@ section {
 }
 
 .skills-list li {
-  background: #1d1d1d;
+  background: var(--card);
   padding: 1rem;
   text-align: center;
   border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
-  transition: all 0.3s ease;
+  box-shadow: 0 0 10px var(--shadow);
+  transition: transform 0.3s ease;
 }
 
 .skills-list li:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+  transform: translateY(-5px);
 }
 
-/* === GALLERY: Horizontal Scroll === */
+/* === PROJECT GALLERY === */
 .gallery {
   display: flex;
   overflow-x: auto;
   gap: 1.5rem;
-  padding: 2rem 1rem;
   scroll-snap-type: x mandatory;
-  scroll-padding: 1rem;
+  padding: 1rem 0;
 }
 
 .gallery::-webkit-scrollbar {
@@ -132,23 +209,22 @@ section {
 }
 
 .gallery::-webkit-scrollbar-thumb {
-  background-color: #00ffe1;
+  background-color: var(--primary);
   border-radius: 10px;
 }
 
-.gallery .card {
+.card {
   min-width: 300px;
-  background: #111;
+  background: var(--card);
   padding: 1.5rem;
   border-radius: 18px;
   scroll-snap-align: center;
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
-  transition: transform 0.3s ease;
+  box-shadow: 0 0 15px var(--shadow);
+  transition: 0.3s ease;
 }
 
-.gallery .card:hover {
+.card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
 }
 
 /* === TESTIMONIALS === */
@@ -159,31 +235,26 @@ section {
 }
 
 .testimonial-card {
-  background: #1b1b1b;
+  background: var(--card);
   padding: 2rem;
   border-radius: 14px;
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 15px var(--shadow);
 }
 
 .testimonial-card span {
   margin-top: 1rem;
   display: block;
-  color: #00ffe1;
+  color: var(--primary);
   font-style: italic;
 }
 
 /* === CONNECT === */
-.connect-section h3 {
-  font-size: 2rem;
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
 .social-badges {
   display: flex;
   justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
+  margin-top: 1.5rem;
 }
 
 .social-badges img {
@@ -200,21 +271,31 @@ footer {
   background: #000;
   padding: 1rem;
   color: #888;
-  font-size: 0.9rem;
 }
 
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
-  .about-flex {
-    flex-direction: column;
-  }
-
   .hero h1 {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
 
-  .hero p {
-    font-size: 1rem;
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    right: 2rem;
+    background: var(--bg);
+    padding: 1rem;
+    border-radius: 10px;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
   }
 
   .gallery .card {
@@ -231,12 +312,8 @@ footer {
     grid-template-columns: 1fr;
   }
 
-  .hero h1 {
-    font-size: 1.8rem;
-  }
-
   .hero p {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   .gallery .card {
