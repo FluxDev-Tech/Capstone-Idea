@@ -263,6 +263,49 @@ p {
   border-radius: 10px;
   margin-bottom: 1rem;
 }
+.card {
+  flex: 0 0 auto;
+  min-width: 240px;
+  max-width: 280px;
+  width: 100%;
+  background-color: var(--card-color);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 0 0 2px rgba(0, 255, 225, 0.1),
+              0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  scroll-snap-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at top left, var(--primary-color), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+  filter: blur(10px);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 0 8px var(--primary-color),
+    0 0 16px var(--primary-color),
+    0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+.card:hover::before {
+  opacity: 0.3;
+}
 
 .card h3 {
   font-size: 1.05rem;
@@ -356,57 +399,128 @@ p {
     font-size: 0.9rem;
   }
    
-
 /* =======================
-   📄 PROJECT DETAILS
+   📄 PROJECT DETAILS - Redesigned
 ========================== */
+.details {
+  padding: 2rem 1rem;
+  max-width: 960px;
+  margin: 0 auto;
+  transition: all 0.3s ease-in-out;
+}
+
 .details .card {
-  margin-top: 2rem;
   background-color: var(--card-color);
   padding: 2rem;
   border-radius: 14px;
+  box-shadow: 0 0 12px rgba(0, 255, 225, 0.1),
+              0 10px 25px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.details .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 16px var(--primary-color), 0 20px 30px rgba(0, 0, 0, 0.35);
+}
+
+.details h3 {
+  font-size: 1.4rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
 }
 
 .details h4 {
   margin-top: 1rem;
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: var(--primary-color);
 }
 
 .details ul {
-  padding-left: 1.2rem;
-  margin: 0.5rem 0 1rem 0;
+  padding-left: 1.4rem;
+  margin: 0.5rem 0 1.5rem;
+  line-height: 1.6;
+}
+
+.details ul li {
+  margin-bottom: 0.4rem;
+  color: var(--text-color);
 }
 
 .details pre {
-  background-color: #111;
+  background: linear-gradient(to right, #0f0f0f, #1a1a1a);
   color: #00ff99;
-  padding: 1rem;
-  border-radius: 10px;
+  padding: 1.25rem;
+  border-radius: 12px;
   overflow-x: auto;
   font-family: 'Courier New', monospace;
   font-size: 0.9rem;
-  margin-top: 0.5rem;
-  white-space: pre-wrap;
-  word-wrap: break-word;
+  margin-top: 0.75rem;
+  box-shadow: inset 0 0 12px rgba(0, 255, 153, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* Close Button */
 .close-btn {
-  margin-top: 1.5rem;
-  padding: 0.6rem 1.2rem;
+  margin-top: 2rem;
+  padding: 0.7rem 1.5rem;
   background-color: var(--primary-color);
-  border: none;
   color: #000;
-  border-radius: 8px;
+  border: none;
+  border-radius: 10px;
   font-weight: bold;
+  font-size: 1rem;
   cursor: pointer;
-  transition: background 0.3s;
-}
-.close-btn:hover {
-  background-color: #00ccbb;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
+.close-btn:hover {
+  background-color: #00ccbb;
+  transform: scale(1.05);
+}
+
+/* =======================
+   📱 Responsive Details
+========================== */
+@media (max-width: 768px) {
+  .details .card {
+    padding: 1.5rem;
+  }
+
+  .details pre {
+    font-size: 0.85rem;
+  }
+
+  .details h3 {
+    font-size: 1.2rem;
+  }
+
+  .close-btn {
+    font-size: 0.95rem;
+    padding: 0.6rem 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .details {
+    padding: 1rem 0.5rem;
+  }
+
+  .details .card {
+    padding: 1.25rem;
+  }
+
+  .details pre {
+    font-size: 0.8rem;
+  }
+
+  .close-btn {
+    width: 100%;
+    padding: 0.8rem;
+  }
+}
+   
 /* =======================
    💬 TESTIMONIALS
 ========================== */
