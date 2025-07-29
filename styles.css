@@ -195,40 +195,105 @@ p {
    🖼️ PROJECT GALLERY
 ========================== */
 .project-gallery {
-  overflow-x: hidden;
-}
-
 .gallery {
   display: flex;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
   gap: 1rem;
   padding: 1rem 0;
+  scroll-snap-type: x mandatory;
 }
 
 .gallery::-webkit-scrollbar {
-  height: 10px;
+  height: 8px;
 }
+
 .gallery::-webkit-scrollbar-thumb {
-  background-color: var(--primary-color);
-  border-radius: 20px;
+  background: var(--primary-color);
+  border-radius: 8px;
 }
 
 .card {
-  min-width: 300px;
   flex: 0 0 auto;
-  scroll-snap-align: center;
+  min-width: 260px;
+  max-width: 300px;
   background-color: var(--card-color);
-  border-radius: 16px;
+  border-radius: 12px;
   padding: 1rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  transform: translateY(-5px);
 }
+
+.card img {
+  width: 100%;
+  height: auto;
+  max-height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.card h3 {
+  font-size: 1.1rem;
+  color: var(--text-color);
+}
+
+/* Project Details Styling */
+.details .card {
+  margin-top: 2rem;
+  background-color: var(--card-color);
+  padding: 2rem;
+}
+
+.details h4 {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: var(--primary-color);
+}
+
+.details ul {
+  padding-left: 1.2rem;
+  margin: 0.5rem 0 1rem 0;
+}
+
+.details pre {
+  background-color: #222;
+  color: #0f0;
+  padding: 1rem;
+  overflow-x: auto;
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+
+/* Responsive Mobile Fixes */
+@media (max-width: 768px) {
+  .gallery {
+    padding-left: 1rem;
+  }
+
+  .card {
+    min-width: 240px;
+    max-width: 260px;
+    padding: 1rem;
+  }
+
+  .card img {
+    max-height: 150px;
+  }
+
+  .details .card {
+    padding: 1rem;
+  }
+}
+
 
 /* =======================
    💬 TESTIMONIALS
