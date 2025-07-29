@@ -1,75 +1,83 @@
-// Elements
-const gallery = document.getElementById("gallery");
-const details = document.getElementById("details");
-const themeToggle = document.getElementById("themeToggle");
-const hamburger = document.getElementById("hamburger");
-const navLinks = document.getElementById("navLinks");
+<script>
+  // ===== 1. Mobile Navigation Toggle =====
+  const hamburger = document.querySelector('.hamburger');
+  const navLinks = document.querySelector('.nav-links');
 
-// Render Project Cards Horizontally
-function renderGallery() {
-  gallery.innerHTML = projects.map((project, index) => `
-    <div class="card" onclick="showDetails(${index})">
-      <img src="${project.image}" alt="${project.title}" style="width: 100%; border-radius: 10px;">
-      <h3>${project.title}</h3>
-    </div>
-  `).join('');
-}
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  }
 
-// Show Project Detail (modal style)
-function showDetails(index) {
-  const project = projects[index];
-  details.innerHTML = `
-    <div class="card" style="margin-top: 2rem;">
-      <h3>${project.title}</h3>
-      <p>${project.description}</p>
-      <h4>Hardware:</h4>
-      <ul>${project.hardware.map(item => `<li>${item}</li>`).join('')}</ul>
-      <h4>Sample Code:</h4>
-      <pre><code>${project.code}</code></pre>
-      <button onclick="details.innerHTML = ''" style="margin-top: 1rem;">Close</button>
-    </div>
-  `;
-  details.scrollIntoView({ behavior: "smooth" });
-}
+  // ===== 2. Theme Toggle Support =====
+  const themeToggle = document.getElementById('themeToggle');
+  const root = document.documentElement;
 
-function showDetails(index) {
-  const project = projects[index];
-  details.innerHTML = `
-    <div class="card">
-      <img src="${project.image}" alt="${project.title}" style="width: 100%; border-radius: 12px; margin-bottom: 1rem;">
-      <h3>${project.title}</h3>
-      <p style="margin: 1rem 0;">${project.description}</p>
-      <h4>🔧 Hardware Used:</h4>
-      <ul>
-        ${project.hardware.map(item => `<li>${item}</li>`).join('')}
-      </ul>
-      <h4>💻 Sample Code:</h4>
-      <pre><code>${project.code}</code></pre>
-      <button onclick="details.innerHTML = ''" class="close-btn">Close</button>
-    </div>
-  `;
+  const setTheme = (theme) => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  };
 
-  // Scroll to the details section
-  document.getElementById("details").scrollIntoView({
-    behavior: "smooth",
-    block: "start"
+  // Load theme from localStorage
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  setTheme(savedTheme);
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const current = root.getAttribute('data-theme');
+      setTheme(current === 'dark' ? 'light' : 'dark');
+    });
+  }
+
+  // ===== 3. Responsive Card Size Adjustment =====
+  function adjustCards() {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      if (window.innerWidth < 600) {
+        card.style.minWidth = '180px';
+        card.style.maxWidth = '220px';
+      } else if (window.innerWidth < 1024) {
+        card.style.minWidth = '220px';
+        card.style.maxWidth = '250px';
+      } else {
+        card.style.minWidth = '240px';
+        card.style.maxWidth = '280px';
+      }
+    });
+  }
+
+  window.addEventListener('resize', adjustCards);
+  window.addEventListener('load', adjustCards);
+
+  // ===== 4. Gallery Drag Scroll (Mobile UX) =====
+  const galleries = document.querySelectorAll('.gallery');
+  galleries.forEach(gallery => {
+    let isDown = false;
+    let startX, scrollLeft;
+
+    gallery.addEventListener('mousedown', (e) => {
+      isDown = true;
+      gallery.classList.add('dragging');
+      startX = e.pageX - gallery.offsetLeft;
+      scrollLeft = gallery.scrollLeft;
+    });
+
+    gallery.addEventListener('mouseleave', () => {
+      isDown = false;
+      gallery.classList.remove('dragging');
+    });
+
+    gallery.addEventListener('mouseup', () => {
+      isDown = false;
+      gallery.classList.remove('dragging');
+    });
+
+    gallery.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - gallery.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      gallery.scrollLeft = scrollLeft - walk;
+    });
   });
-}
-
-// Theme Toggle (Dark/Light)
-themeToggle.addEventListener("click", () => {
-  const currentTheme = document.documentElement.getAttribute("data-theme");
-  const newTheme = currentTheme === "dark" ? "light" : "dark";
-  document.documentElement.setAttribute("data-theme", newTheme);
-  themeToggle.textContent = newTheme === "dark" ? "🌙" : "☀️";
-});
-
-// Hamburger Toggle
-hamburger.addEventListener("click", () => {
-  navLinks.classList.toggle("active");
-});
-
-// On Load
-document.addEventListener("DOMContentLoaded", () => {
-  renderGallery();
-});
+</script>
