@@ -271,6 +271,21 @@ body {
   overflow-x: auto;
   border-radius: 8px;
 }
+.details-card img {
+  width: 100%;
+  max-width: 600px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 1rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 12px var(--primary);
+  transition: transform 0.3s ease;
+}
+
+.details-card img:hover {
+  transform: scale(1.03);
+}
 
 /* === TESTIMONIALS === */
 .testimonial-cards {
