@@ -205,6 +205,7 @@ body {
   transform: translateY(-5px);
 }
 
+
 /* === PROJECT GALLERY WRAPPER === */
 .gallery {
   display: flex;
@@ -231,7 +232,7 @@ body {
 .project-card {
   flex: 0 0 auto;
   width: 340px;
-  max-width: 100%;
+  max-width: 90vw;
   background: var(--card);
   padding: 1.5rem;
   border-radius: 20px;
@@ -245,6 +246,7 @@ body {
   gap: 1rem;
   cursor: pointer;
   position: relative;
+  overflow: hidden;
 }
 
 /* Hover effect */
@@ -284,7 +286,35 @@ body {
   max-height: 4.5rem;
   overflow: hidden;
   text-overflow: ellipsis;
+  padding: 0 0.5rem;
 }
+
+/* === PREVENT CONTENT OVERFLOW IN PROJECT CARD === */
+.project-card pre {
+  max-width: 100%;
+  overflow-x: auto;
+  background: var(--code-bg, #0a0f2c);
+  color: var(--green-code, #00ffcc);
+  padding: 1rem;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(0, 255, 200, 0.15);
+  text-align: left;
+  width: 100%;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.project-card pre::-webkit-scrollbar {
+  height: 6px;
+}
+
+.project-card pre::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+  border-radius: 10px;
+}
+
 
 /* === RESPONSIVE SETTINGS === */
 @media (max-width: 768px) {
