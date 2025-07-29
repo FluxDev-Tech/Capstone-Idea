@@ -1,18 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Top 10 Arduino Capstone Projects</title>
   <link rel="stylesheet" href="styles.css">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> <!-- AOS Scroll Animations -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 </head>
 <body>
 
+  <!-- Header / Navbar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <h1 class="logo">Flux<span>Dev</span></h1>
+      <nav class="nav-links" id="navLinks">
+        <a href="#hero">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#connect">Contact</a>
+      </nav>
+      <div class="nav-icons">
+        <button id="themeToggle" aria-label="Toggle Dark Mode">🌓</button>
+        <div class="hamburger" id="hamburger">&#9776;</div>
+      </div>
+    </div>
+  </header>
+
   <!-- Hero Section -->
-  <section class="hero" data-aos="zoom-in">
+  <section class="hero" id="hero" data-aos="zoom-in">
     <div class="hero-content container">
-      <h1>🔧 Innovate with Arduino</h1>
+      <h1><span id="typed"></span></h1>
       <p>Bringing your ideas to life through modern embedded systems and smart automation.</p>
     </div>
   </section>
@@ -26,7 +45,7 @@
   </section>
 
   <!-- About -->
-  <section class="about" data-aos="fade-up">
+  <section class="about" id="about" data-aos="fade-up">
     <div class="container about-flex">
       <div class="about-img">
         <img src="assets/img/profile.png" alt="FluxDev Tech - Developer Profile">
@@ -39,7 +58,7 @@
   </section>
 
   <!-- Skills -->
-  <section class="skills" data-aos="fade-up">
+  <section class="skills" id="skills" data-aos="fade-up">
     <div class="container">
       <h2>💡 Skills & Tools</h2>
       <p>Explore the core technologies used throughout these featured Arduino capstone projects:</p>
@@ -53,21 +72,19 @@
       </ul>
     </div>
   </section>
-      
+
   <!-- Project Gallery -->
-<section class="project-gallery container" data-aos="fade-up">
-  <h2>📸 Project Showcase</h2>
-  <p>Swipe horizontally to explore a gallery of practical, innovative Arduino-based projects.</p>
-  <div id="gallery" class="gallery"></div>
-  <div id="details" class="details"></div>
-</section>
-      
+  <section class="project-gallery container" id="projects" data-aos="fade-up">
+    <h2>📸 Project Showcase</h2>
+    <p>Swipe horizontally to explore a gallery of practical, innovative Arduino-based projects.</p>
+    <div id="gallery" class="gallery"></div>
+    <div id="details" class="details"></div>
+  </section>
 
   <!-- Testimonials -->
   <section class="testimonials" data-aos="fade-up">
     <div class="container">
       <h2>🌟 Testimonials</h2>
-      <p>Real feedback from learners and makers who used these projects.</p>
       <div class="testimonial-cards">
         <div class="testimonial-card">
           <p>"This project helped me understand the basics of Arduino and gave me the confidence to build my own systems!"</p>
@@ -82,7 +99,7 @@
   </section>
 
   <!-- Connect Section -->
-  <section class="connect-section" data-aos="fade-up">
+  <section class="connect-section" id="connect" data-aos="fade-up">
     <h3>📫 Connect with Me</h3>
     <div class="social-badges">
       <a href="https://www.facebook.com/fluxdevtech" target="_blank">
@@ -108,5 +125,9 @@
   <!-- Scripts -->
   <script src="projects.js"></script>
   <script src="script.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
 </body>
 </html>
