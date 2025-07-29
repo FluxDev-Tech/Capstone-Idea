@@ -194,7 +194,7 @@ p {
 /* =======================
    🖼️ PROJECT GALLERY
 ========================== */
-.project-gallery {
+
 .gallery {
   display: flex;
   overflow-x: auto;
