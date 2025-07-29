@@ -1,7 +1,7 @@
 const projects = [
   {
-    title: "RFID-BASED ATTENDANCE SYSTEM",
-    description: "An automated student attendance system using RFID technology and Arduino.",
+    title: "RFID‑BASED ATTENDANCE SYSTEM",
+    description: "Automated student attendance using RFID technology and Arduino.",
     hardware: ["MFRC522 RFID Module", "RFID tags", "Arduino Uno"],
     stack: ["Firebase or PHP + MySQL", "Arduino IDE"],
     image: "assets/img/1.png",
@@ -20,7 +20,9 @@ void setup() {
 }
 
 void loop() {
-  if (!mfrc522.PICC_IsNewCardPresent() || !mfrc522.PICC_ReadCardSerial()) return;
+  if (!mfrc522.PICC_IsNewCardPresent() ||
+      !mfrc522.PICC_ReadCardSerial()) return;
+
   Serial.print("Card UID: ");
   for (byte i = 0; i < mfrc522.uid.size; i++) {
     Serial.print(mfrc522.uid.uidByte[i], HEX);
@@ -33,7 +35,7 @@ void loop() {
     title: "FINGERPRINT VOTING SYSTEM",
     description: "Secure voting system using a fingerprint sensor and Arduino.",
     hardware: ["R305 Fingerprint Sensor", "LCD Display", "Keypad", "Arduino Uno"],
-    stack: ["PHP + MySQL for result storage", "Arduino IDE"],
+    stack: ["PHP + MySQL", "Arduino IDE"],
     image: "assets/img/2.png",
     code: `#include <Adafruit_Fingerprint.h>
 #include <SoftwareSerial.h>
@@ -52,34 +54,28 @@ void setup() {
   }
 }
 
-void loop() {
-  getFingerprintID();
-  delay(1000);
+uint8_t getFingerprintID() {
+  if (finger.getImage() != FINGERPRINT_OK) return -1;
+  if (finger.image2Tz() != FINGERPRINT_OK) return -1;
+  if (finger.fingerFastSearch() != FINGERPRINT_OK) return -1;
+  return FINGERPRINT_OK;
 }
 
-uint8_t getFingerprintID() {
-  uint8_t p = finger.getImage();
-  if (p != FINGERPRINT_OK) return p;
-  p = finger.image2Tz();
-  if (p != FINGERPRINT_OK) return p;
-  p = finger.fingerFastSearch();
-  if (p == FINGERPRINT_OK) {
-    Serial.print("ID found: "); Serial.println(finger.fingerID);
-  } else {
-    Serial.println("No match found");
+void loop() {
+  if (getFingerprintID() == FINGERPRINT_OK) {
+    Serial.println("Vote recorded!");
   }
-  return p;
+  delay(1000);
 }`
   },
   {
     title: "THEFT DETECTION WITH SMS ALERT",
-    description: "Detects vibration or motion and sends an SMS alert using SIM800L.",
+    description: "Detects motion and sends SMS alert via SIM800L GSM module.",
     hardware: ["Vibration Sensor", "SIM800L GSM Module", "Arduino Uno"],
     stack: ["Arduino IDE"],
     image: "assets/img/3.png",
     code: `#include <SoftwareSerial.h>
-
-SoftwareSerial sim800(7, 8);
+SoftwareSerial sim800(7,8);
 int vibrationPin = 2;
 
 void setup() {
@@ -88,26 +84,25 @@ void setup() {
   Serial.begin(9600);
 }
 
-void loop() {
-  int state = digitalRead(vibrationPin);
-  if (state == HIGH) {
-    sendSMS();
-    delay(10000);
-  }
-}
-
 void sendSMS() {
   sim800.println("AT+CMGF=1");
   delay(1000);
-  sim800.println("AT+CMGS=\"+1234567890\"");
+  sim800.println("AT+CMGS=\\"+1234567890\\"");
   delay(1000);
   sim800.println("Theft detected!");
   sim800.write(26);
+}
+
+void loop() {
+  if (digitalRead(vibrationPin) == HIGH) {
+    sendSMS();
+    delay(10000);
+  }
 }`
   },
   {
     title: "WIRELESS NOTICE BOARD",
-    description: "Remote message display using NodeMCU and OLED, synced with Firebase or a Web App.",
+    description: "Displays messages wirelessly using NodeMCU and OLED synced with Firebase.",
     hardware: ["NodeMCU ESP8266", "OLED Display (0.96\")"],
     stack: ["Firebase or Web App", "Arduino IDE"],
     image: "assets/img/4.png",
@@ -116,9 +111,8 @@ void sendSMS() {
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 
-#define SCREEN_WIDTH 128
-#define SCREEN_HEIGHT 64
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
+#define OLED_RESET -1
+Adafruit_SSD1306 display(128, 64, &Wire, OLED_RESET);
 
 void setup() {
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
@@ -126,18 +120,19 @@ void setup() {
   display.setTextSize(1);
   display.setTextColor(WHITE);
   display.setCursor(0,0);
-  display.println("Welcome!");
+  display.println("Connecting...");
   display.display();
+  // Connect to WiFi and Firebase...
 }
 
 void loop() {
-  // Fetch message from Firebase or web and display
+  // Retrieve and display message...
 }`
   },
   {
-    title: "FIRE AND SMOKE ALARM SYSTEM",
-    description: "Detects fire and smoke with MQ2/flame sensors, activates buzzer.",
-    hardware: ["MQ-2 Smoke Sensor", "Flame Sensor", "Buzzer", "Arduino Uno"],
+    title: "FIRE & SMOKE ALARM SYSTEM",
+    description: "Detects fire and smoke using MQ‑2 and flame sensors, triggers buzzer alert.",
+    hardware: ["MQ‑2 Sensor", "Flame Sensor", "Buzzer", "Arduino Uno"],
     stack: ["Arduino IDE"],
     image: "assets/img/5.png",
     code: `int smokeSensor = A0;
@@ -151,9 +146,9 @@ void setup() {
 }
 
 void loop() {
-  int smokeValue = analogRead(smokeSensor);
-  int flameValue = digitalRead(flameSensor);
-  if (smokeValue > 400 || flameValue == LOW) {
+  int smokeVal = analogRead(smokeSensor);
+  int flameVal = digitalRead(flameSensor);
+  if (smokeVal > 400 || flameVal == LOW) {
     digitalWrite(buzzer, HIGH);
   } else {
     digitalWrite(buzzer, LOW);
@@ -163,7 +158,7 @@ void loop() {
   },
   {
     title: "SMART IRRIGATION SYSTEM",
-    description: "Automatically irrigates when soil moisture drops below threshold.",
+    description: "Automates watering when soil moisture drops below threshold.",
     hardware: ["Soil Moisture Sensor", "Relay Module", "Water Pump", "Arduino Uno"],
     stack: ["Arduino IDE"],
     image: "assets/img/6.png",
@@ -177,7 +172,6 @@ void setup() {
 
 void loop() {
   int moisture = analogRead(moisturePin);
-  Serial.println(moisture);
   if (moisture < 400) {
     digitalWrite(pumpRelay, HIGH);
   } else {
@@ -187,9 +181,9 @@ void loop() {
 }`
   },
   {
-    title: "HOME AUTOMATION WITH MOBILE APP",
+    title: "HOME AUTOMATION WITH BLYNK",
     description: "Control home appliances via mobile app using NodeMCU and Blynk.",
-    hardware: ["NodeMCU ESP8266", "Relay Module", "Lamp or Fan"],
+    hardware: ["NodeMCU ESP8266", "Relay Module", "Appliances"],
     stack: ["Blynk App", "Arduino IDE"],
     image: "assets/img/7.png",
     code: `#define BLYNK_PRINT Serial
@@ -198,7 +192,7 @@ void loop() {
 
 char auth[] = "YourAuthToken";
 char ssid[] = "YourWiFi";
-char pass[] = "YourPass";
+char pass[] = "YourPassword";
 
 void setup() {
   Serial.begin(9600);
@@ -211,43 +205,43 @@ void loop() {
 }`
   },
   {
-    title: "ALCOHOL SYSTEM FOR DRIVER DETECTION",
-    description: "Prevents car ignition if alcohol is detected in driver’s breath.",
-    hardware: ["MQ-3 Alcohol Sensor", "Relay Module", "Arduino Uno"],
+    title: "BREATH ALCOHOL SYSTEM FOR DRIVERS",
+    description: "Prevents engine ignition if alcohol is detected in driver’s breath.",
+    hardware: ["MQ‑3 Alcohol Sensor", "Relay Module", "Arduino Uno"],
     stack: ["Arduino IDE"],
     image: "assets/img/8.png",
     code: `int alcoholSensor = A0;
-int relay = 8;
+int relayPin = 8;
 
 void setup() {
-  pinMode(relay, OUTPUT);
+  pinMode(relayPin, OUTPUT);
   Serial.begin(9600);
 }
 
 void loop() {
-  int level = analogRead(alcoholSensor);
-  Serial.println(level);
-  if (level > 400) {
-    digitalWrite(relay, LOW); // Prevent ignition
+  int alcoholLevel = analogRead(alcoholSensor);
+  if (alcoholLevel > 400) {
+    digitalWrite(relayPin, LOW); // Stop ignition
   } else {
-    digitalWrite(relay, HIGH);
+    digitalWrite(relayPin, HIGH);
   }
   delay(1000);
 }`
   },
   {
     title: "SMART TRASH BIN (AUTO LID)",
-    description: "Lid opens automatically using ultrasonic sensor and servo motor.",
+    description: "Automatic lid opens using ultrasonic sensor and servo motor.",
     hardware: ["Ultrasonic Sensor", "Servo Motor", "Arduino Uno"],
     stack: ["Arduino IDE"],
     image: "assets/img/9.png",
     code: `#include <Servo.h>
-Servo lid;
-int trigPin = 9;
-int echoPin = 10;
+
+Servo binServo;
+const int trigPin = 9;
+const int echoPin = 10;
 
 void setup() {
-  lid.attach(3);
+  binServo.attach(3);
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
   Serial.begin(9600);
@@ -260,19 +254,18 @@ void loop() {
   delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
   long duration = pulseIn(echoPin, HIGH);
-  int distance = duration * 0.034 / 2;
-
-  if (distance < 20) {
-    lid.write(90);
+  int dist = duration * 0.034 / 2;
+  if (dist < 20) {
+    binServo.write(90);
     delay(3000);
-    lid.write(0);
+    binServo.write(0);
   }
   delay(500);
 }`
   },
   {
     title: "FINGERPRINT DOOR LOCK SYSTEM",
-    description: "Unlocks door with registered fingerprints using R305 and servo.",
+    description: "Door unlocks via fingerprint scan using R305 and servo motor.",
     hardware: ["R305 Fingerprint Sensor", "Servo Motor", "Arduino Uno"],
     stack: ["Arduino IDE"],
     image: "assets/img/10.png",
@@ -288,27 +281,20 @@ void setup() {
   Serial.begin(9600);
   finger.begin(57600);
   doorLock.attach(9);
-  if (finger.verifyPassword()) {
-    Serial.println("Sensor ready");
-  } else {
+  if (!finger.verifyPassword()) {
     Serial.println("Sensor error");
     while (1);
   }
 }
 
 void loop() {
-  if (getFingerprintID() == FINGERPRINT_OK) {
+  if (finger.getImage() == FINGERPRINT_OK &&
+      finger.image2Tz() == FINGERPRINT_OK &&
+      finger.fingerFastSearch() == FINGERPRINT_OK) {
     doorLock.write(90);
-    delay(5000);
+    delay(3000);
     doorLock.write(0);
   }
-}
-
-uint8_t getFingerprintID() {
-  if (finger.getImage() != FINGERPRINT_OK) return -1;
-  if (finger.image2Tz() != FINGERPRINT_OK) return -1;
-  if (finger.fingerFastSearch() != FINGERPRINT_OK) return -1;
-  return FINGERPRINT_OK;
 }`
   }
 ];
