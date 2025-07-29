@@ -1,14 +1,51 @@
 // === THEME TOGGLE ===
 const toggleBtn = document.getElementById("themeToggle");
 const body = document.body;
+const gallery = document.getElementById("gallery");
+const details = document.getElementById("details");
+
+function renderGallery() {
+  if (!Array.isArray(projects)) return;
+  gallery.innerHTML = projects.map((project, index) => `
+    <div class="project-card reveal" onclick="showDetails(${index})">
+      <img src="${project.image}" alt="${project.title}" />
+      <h3>${project.title}</h3>
+    </div>
+  `).join("");
+}
+
+function showDetails(index) {
+  const project = projects[index];
+  details.innerHTML = `
+    <div class="details-card">
+      <img src="${project.image}" alt="${project.title}" onclick="goBack()" />
+      <h2>${project.title}</h2>
+      <p>${project.description}</p>
+      <p><strong>Hardware:</strong> ${Array.isArray(project.hardware) ? project.hardware.join(", ") : project.hardware}</p>
+      <p><strong>Tech Stack:</strong> ${Array.isArray(project.stack) ? project.stack.join(", ") : project.techStack}</p>
+      <pre><code>${project.code}</code></pre>
+    </div>
+  `;
+  details.style.display = "block";
+  details.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function goBack() {
+  details.style.display = "none";
+  gallery.scrollIntoView({ behavior: "smooth", block: "start" });
+}
 
 // === APPLY SAVED THEME ON LOAD ===
 document.addEventListener("DOMContentLoaded", () => {
   const savedTheme = localStorage.getItem("theme") || "dark";
   body.setAttribute("data-theme", savedTheme);
   if (toggleBtn) toggleBtn.innerHTML = savedTheme === "dark" ? "🌙" : "☀️";
+
+  // === LOAD PROJECTS ON PAGE LOAD ===
+  renderGallery();
 });
 
+// === THEME TOGGLE CLICK ===
 if (toggleBtn) {
   toggleBtn.addEventListener("click", () => {
     const currentTheme = body.getAttribute("data-theme");
@@ -46,48 +83,10 @@ if (typeof ScrollReveal !== "undefined") {
 // === MOBILE NAV TOGGLE ===
 const menuToggle = document.querySelector(".hamburger");
 const navLinks = document.querySelector(".nav-links");
+
 if (menuToggle && navLinks) {
   menuToggle.addEventListener("click", () => {
     navLinks.classList.toggle("active");
     menuToggle.classList.toggle("open");
   });
 }
-
-// === LOAD PROJECTS ===
-document.addEventListener("DOMContentLoaded", () => {
-  const gallery = document.getElementById("gallery");
-  const details = document.getElementById("details");
-
-  if (!gallery || typeof projects === "undefined" || !Array.isArray(projects)) return;
-
-  gallery.innerHTML = "";
-  projects.forEach((project) => {
-    const card = document.createElement("div");
-    card.className = "project-card reveal";
-    card.innerHTML = `
-      <img src="${project.image}" alt="${project.title}" />
-      <h3>${project.title}</h3>
-      <p>${project.description}</p>
-    `;
-    card.addEventListener("click", () => showDetails(project));
-    gallery.appendChild(card);
-  });
-
-  function showDetails(project) {
-    if (!details) return;
-
-    details.innerHTML = `
-      <div class="project-details">
-        <h2>${project.title}</h2>
-        <p>${project.description}</p>
-        <h4>🛠️ Hardware Used</h4>
-        <ul>${project.hardware.map((item) => `<li>${item}</li>`).join("")}</ul>
-        <h4>🧰 Tech Stack</h4>
-        <ul>${project.stack.map((item) => `<li>${item}</li>`).join("")}</ul>
-        <h4>📄 Sample Code</h4>
-        <pre><code>${project.code}</code></pre>
-      </div>
-    `;
-    details.scrollIntoView({ behavior: "smooth" });
-  }
-});
