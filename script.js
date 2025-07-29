@@ -1,83 +1,56 @@
-<script>
-  // ===== 1. Mobile Navigation Toggle =====
-  const hamburger = document.querySelector('.hamburger');
-  const navLinks = document.querySelector('.nav-links');
+// ==== ELEMENTS ====
+const gallery = document.getElementById("gallery");
+const details = document.getElementById("details");
+const themeToggle = document.getElementById("themeToggle");
+const hamburger = document.getElementById("hamburger");
+const navLinks = document.getElementById("navLinks");
 
-  if (hamburger && navLinks) {
-    hamburger.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-    });
-  }
+// ==== RENDER GALLERY ====
+function renderGallery() {
+  gallery.innerHTML = projects.map((project, index) => `
+    <div class="card" onclick="showDetails(${index})">
+      <img src="${project.image}" alt="${project.title}" />
+      <h3>${project.title}</h3>
+    </div>
+  `).join('');
+}
 
-  // ===== 2. Theme Toggle Support =====
-  const themeToggle = document.getElementById('themeToggle');
-  const root = document.documentElement;
+// ==== SHOW PROJECT DETAILS ====
+function showDetails(index) {
+  const project = projects[index];
+  details.innerHTML = `
+    <div class="card details-card">
+      <img src="${project.image}" alt="${project.title}" />
+      <h3>${project.title}</h3>
+      <p>${project.description}</p>
+      <h4>🔧 Hardware Used:</h4>
+      <ul>${project.hardware.map(item => `<li>${item}</li>`).join('')}</ul>
+      <h4>💻 Sample Code:</h4>
+      <pre><code>${project.code}</code></pre>
+      <button class="close-btn" onclick="closeDetails()">Close</button>
+    </div>
+  `;
+  details.scrollIntoView({ behavior: "smooth", block: "start" });
+}
 
-  const setTheme = (theme) => {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-  };
+function closeDetails() {
+  details.innerHTML = "";
+}
 
-  // Load theme from localStorage
-  const savedTheme = localStorage.getItem('theme') || 'dark';
-  setTheme(savedTheme);
+// ==== THEME TOGGLE ====
+themeToggle.addEventListener("click", () => {
+  const currentTheme = document.documentElement.getAttribute("data-theme") || "dark";
+  const newTheme = currentTheme === "dark" ? "light" : "dark";
+  document.documentElement.setAttribute("data-theme", newTheme);
+  themeToggle.textContent = newTheme === "dark" ? "🌙" : "☀️";
+});
 
-  if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-      const current = root.getAttribute('data-theme');
-      setTheme(current === 'dark' ? 'light' : 'dark');
-    });
-  }
+// ==== MOBILE MENU ====
+hamburger.addEventListener("click", () => {
+  navLinks.classList.toggle("active");
+});
 
-  // ===== 3. Responsive Card Size Adjustment =====
-  function adjustCards() {
-    const cards = document.querySelectorAll('.card');
-    cards.forEach(card => {
-      if (window.innerWidth < 600) {
-        card.style.minWidth = '180px';
-        card.style.maxWidth = '220px';
-      } else if (window.innerWidth < 1024) {
-        card.style.minWidth = '220px';
-        card.style.maxWidth = '250px';
-      } else {
-        card.style.minWidth = '240px';
-        card.style.maxWidth = '280px';
-      }
-    });
-  }
-
-  window.addEventListener('resize', adjustCards);
-  window.addEventListener('load', adjustCards);
-
-  // ===== 4. Gallery Drag Scroll (Mobile UX) =====
-  const galleries = document.querySelectorAll('.gallery');
-  galleries.forEach(gallery => {
-    let isDown = false;
-    let startX, scrollLeft;
-
-    gallery.addEventListener('mousedown', (e) => {
-      isDown = true;
-      gallery.classList.add('dragging');
-      startX = e.pageX - gallery.offsetLeft;
-      scrollLeft = gallery.scrollLeft;
-    });
-
-    gallery.addEventListener('mouseleave', () => {
-      isDown = false;
-      gallery.classList.remove('dragging');
-    });
-
-    gallery.addEventListener('mouseup', () => {
-      isDown = false;
-      gallery.classList.remove('dragging');
-    });
-
-    gallery.addEventListener('mousemove', (e) => {
-      if (!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - gallery.offsetLeft;
-      const walk = (x - startX) * 1.5;
-      gallery.scrollLeft = scrollLeft - walk;
-    });
-  });
-</script>
+// ==== INITIALIZE ====
+document.addEventListener("DOMContentLoaded", () => {
+  renderGallery();
+});
